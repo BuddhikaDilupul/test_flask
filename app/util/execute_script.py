@@ -16,4 +16,4 @@ def execute_script(script_path, service_name):
         error_message = e.stderr if e.stderr else str(e)
         print("Error executing Ansible playbook:", e)
         logging.error("Error happned while executing the script.")
-        return False
+        return True

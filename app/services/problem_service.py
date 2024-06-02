@@ -43,7 +43,7 @@ def update_status_by_id(id):
     try:
         problem = Problem.query.get(id)
         if problem:
-            problem.status = "resolved"
+            problem.status = "RESOLVED"
             db.session.commit()
             logger.info(f"Problem with ID {id} updated successfully")
             return {"message": f"Problem with ID {id} updated successfully"}

@@ -24,7 +24,7 @@ def create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, p
             displayId=displayId,
             comments=comments,
             problemDetectedAt=problemDetectedAt,
-            problemEndAt=problemEndAt
+            problemEndAt=datetime.datetime.now()
         )
         db.session.add(new_audit)
         db.session.commit()

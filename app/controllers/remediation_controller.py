@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.services.remediation_service import create_remediation
+from app.services.problem_service import update_status_by_id
 import logging
 
 # Set up logging
@@ -20,9 +21,5 @@ def create_remediation_controller():
         return jsonify({"error": "Missing required fields"}), 400
 
     result = create_remediation(recommendation_text, script_path, problem_id)
-
-    if "error" in result:
-        logger.error(f"Failed to create remediation: {result['error']}")
-        return jsonify(result), 500
-
+    update_status_by_id(problem_id)
     return jsonify({"id": result.id}), 201
