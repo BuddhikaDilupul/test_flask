@@ -1,0 +1,267 @@
+2024-06-01 15:54:13,935 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-01 15:54:13,936 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2024-06-01 15:54:13,939 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 15:54:14,704 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 15:54:14,706 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 16:32:47,642 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-01 16:32:47,642 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2024-06-01 16:32:47,655 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 16:32:48,441 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 16:32:48,443 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 16:34:00,509 - INFO - app.controllers.problem_controller - Fetched all problems successfully
+2024-06-01 16:34:00,510 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 16:34:00] "GET /problems HTTP/1.1" 200 -
+2024-06-01 16:34:52,347 - INFO - app.controllers.problem_controller - Fetched all problems with remediations successfully
+2024-06-01 16:34:52,348 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 16:34:52] "GET /problems_with_remediations HTTP/1.1" 200 -
+2024-06-01 16:39:23,127 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 16:39:23,248 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 16:39:24,005 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 16:39:24,008 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 16:46:04,722 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 16:46:04,851 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 17:17:33,084 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-01 17:17:33,084 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2024-06-01 17:17:33,086 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 17:17:33,795 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 17:17:33,797 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 17:31:02,971 - INFO - app.controllers.problem_controller - Created problem with ID 1 successfully
+2024-06-01 17:31:02,973 - ERROR - app.controllers.problem_controller - Error creating problem: (builtins.TypeError) tzinfo argument must be None or of a tzinfo subclass, not type 'str'
+[SQL: INSERT INTO remediation (`recommendationText`, `scriptPath`, `probId`, `createdAt`, `lastUpdateAt`) VALUES (%s, %s, %s, %s, %s)]
+[parameters: [{'scriptPath': '/path/to/script', 'probId': 1, 'recommendationText': 'Example Recommendation'}]]
+2024-06-01 17:31:02,975 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 17:31:02] "[35m[1mPOST /problem HTTP/1.1[0m" 500 -
+2024-06-01 17:31:26,363 - ERROR - app.controllers.problem_controller - Error creating problem: (MySQLdb.IntegrityError) (1062, "Duplicate entry 'resolved' for key 'problem.status'")
+[SQL: INSERT INTO problem (`problemTitle`, `subProblemTitle`, `serviceName`, status) VALUES (%s, %s, %s, %s)]
+[parameters: ('Example Problem', 'Example Sub-Problem', 'Example Service', 'resolved')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-06-01 17:31:26,364 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 17:31:26] "[35m[1mPOST /problem HTTP/1.1[0m" 500 -
+2024-06-01 17:32:07,483 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\models\\problem_model.py', reloading
+2024-06-01 17:32:07,617 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 17:32:08,318 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 17:32:08,322 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 17:32:34,445 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\models\\problem_model.py', reloading
+2024-06-01 17:32:34,605 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 17:32:35,353 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 17:32:35,356 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 17:32:50,892 - INFO - app.controllers.problem_controller - Created problem with ID 1 successfully
+2024-06-01 17:32:50,893 - ERROR - app.controllers.problem_controller - Error creating problem: (builtins.TypeError) tzinfo argument must be None or of a tzinfo subclass, not type 'str'
+[SQL: INSERT INTO remediation (`recommendationText`, `scriptPath`, `probId`, `createdAt`, `lastUpdateAt`) VALUES (%s, %s, %s, %s, %s)]
+[parameters: [{'scriptPath': '/path/to/script', 'probId': 1, 'recommendationText': 'Example Recommendation'}]]
+2024-06-01 17:32:50,894 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 17:32:50] "[35m[1mPOST /problem HTTP/1.1[0m" 500 -
+2024-06-01 17:33:56,715 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\controllers\\problem_controller.py', reloading
+2024-06-01 17:33:56,842 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 17:33:57,555 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 17:33:57,557 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 17:34:07,530 - INFO - app.controllers.problem_controller - Created problem with ID 2 successfully
+2024-06-01 17:34:07,532 - ERROR - app.controllers.problem_controller - Error creating problem: (builtins.TypeError) tzinfo argument must be None or of a tzinfo subclass, not type 'str'
+[SQL: INSERT INTO remediation (`recommendationText`, `scriptPath`, `probId`, `createdAt`, `lastUpdateAt`) VALUES (%s, %s, %s, %s, %s)]
+[parameters: [{'recommendationText': 'Example Recommendation', 'scriptPath': '/path/to/script', 'probId': 2}]]
+2024-06-01 17:34:07,533 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 17:34:07] "[35m[1mPOST /problem HTTP/1.1[0m" 500 -
+2024-06-01 18:04:37,236 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\services\\remediation_service.py', reloading
+2024-06-01 18:04:37,389 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:04:38,321 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:04:38,323 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:04:41,351 - INFO - app.controllers.problem_controller - Created problem with ID 3 successfully
+2024-06-01 18:04:41,354 - ERROR - app.controllers.problem_controller - Error creating problem: (builtins.TypeError) tzinfo argument must be None or of a tzinfo subclass, not type 'str'
+[SQL: INSERT INTO remediation (`recommendationText`, `scriptPath`, `probId`, `createdAt`, `lastUpdateAt`) VALUES (%s, %s, %s, %s, %s)]
+[parameters: [{'recommendationText': 'Example Recommendation', 'probId': 3, 'scriptPath': '/path/to/script'}]]
+2024-06-01 18:04:41,355 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:04:41] "[35m[1mPOST /problem HTTP/1.1[0m" 500 -
+2024-06-01 18:04:43,953 - INFO - app.controllers.problem_controller - Created problem with ID 4 successfully
+2024-06-01 18:04:43,955 - ERROR - app.controllers.problem_controller - Error creating problem: (builtins.TypeError) tzinfo argument must be None or of a tzinfo subclass, not type 'str'
+[SQL: INSERT INTO remediation (`recommendationText`, `scriptPath`, `probId`, `createdAt`, `lastUpdateAt`) VALUES (%s, %s, %s, %s, %s)]
+[parameters: [{'recommendationText': 'Example Recommendation', 'probId': 4, 'scriptPath': '/path/to/script'}]]
+2024-06-01 18:04:43,956 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:04:43] "[35m[1mPOST /problem HTTP/1.1[0m" 500 -
+2024-06-01 18:06:58,928 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\models\\remediation_model.py', reloading
+2024-06-01 18:06:59,049 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:06:59,731 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:06:59,734 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:20:53,300 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\models\\remediation_model.py', reloading
+2024-06-01 18:20:53,422 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:20:54,157 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:20:54,159 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:21:07,873 - INFO - app.controllers.problem_controller - Created problem with ID 1 successfully
+2024-06-01 18:21:07,884 - INFO - app.controllers.problem_controller - Created Recommendation with ID 1 successfully
+2024-06-01 18:21:07,887 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:21:07] "[35m[1mPOST /problem HTTP/1.1[0m" 201 -
+2024-06-01 18:21:30,276 - INFO - app.controllers.problem_controller - Created problem with ID 2 successfully
+2024-06-01 18:21:30,282 - INFO - app.controllers.problem_controller - Created Recommendation with ID 2 successfully
+2024-06-01 18:21:30,285 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:21:30] "[35m[1mPOST /problem HTTP/1.1[0m" 201 -
+2024-06-01 18:22:51,674 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\models\\problem_model.py', reloading
+2024-06-01 18:22:51,802 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:22:52,537 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:22:52,539 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:23:06,611 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\models\\remediation_model.py', reloading
+2024-06-01 18:23:06,806 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:23:07,618 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:23:07,620 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:23:12,053 - INFO - app.controllers.problem_controller - Created problem with ID 3 successfully
+2024-06-01 18:23:12,061 - INFO - app.controllers.problem_controller - Created Recommendation with ID 3 successfully
+2024-06-01 18:23:12,063 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:23:12] "[35m[1mPOST /problem HTTP/1.1[0m" 201 -
+2024-06-01 18:23:13,415 - INFO - app.controllers.problem_controller - Created problem with ID 4 successfully
+2024-06-01 18:23:13,418 - INFO - app.controllers.problem_controller - Created Recommendation with ID 4 successfully
+2024-06-01 18:23:13,421 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:23:13] "[35m[1mPOST /problem HTTP/1.1[0m" 201 -
+2024-06-01 18:23:15,016 - INFO - app.controllers.problem_controller - Created problem with ID 5 successfully
+2024-06-01 18:23:15,021 - INFO - app.controllers.problem_controller - Created Recommendation with ID 5 successfully
+2024-06-01 18:23:15,024 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:23:15] "[35m[1mPOST /problem HTTP/1.1[0m" 201 -
+2024-06-01 18:23:44,778 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\models\\remediation_model.py', reloading
+2024-06-01 18:23:44,927 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:23:45,696 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:23:45,698 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:23:47,552 - INFO - app.controllers.problem_controller - Created problem with ID 1 successfully
+2024-06-01 18:23:47,560 - INFO - app.controllers.problem_controller - Created Recommendation with ID 1 successfully
+2024-06-01 18:23:47,562 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:23:47] "[35m[1mPOST /problem HTTP/1.1[0m" 201 -
+2024-06-01 18:23:49,846 - INFO - app.controllers.problem_controller - Created problem with ID 2 successfully
+2024-06-01 18:23:49,849 - ERROR - app.controllers.problem_controller - Error creating problem: (MySQLdb.IntegrityError) (1062, "Duplicate entry '/path/to/script' for key 'remediation.scriptPath'")
+[SQL: INSERT INTO remediation (`recommendationText`, `scriptPath`, `probId`, `createdAt`, `lastUpdateAt`) VALUES (%s, %s, %s, %s, %s)]
+[parameters: ('Example Recommendation', '/path/to/script', 2, datetime.datetime(2024, 6, 1, 12, 53, 49, 847268), datetime.datetime(2024, 6, 1, 12, 53, 49, 847268))]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-06-01 18:23:49,850 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:23:49] "[35m[1mPOST /problem HTTP/1.1[0m" 500 -
+2024-06-01 18:30:39,462 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\controllers\\audit_controller.py', reloading
+2024-06-01 18:30:39,587 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:30:40,276 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:30:40,278 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:31:08,839 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:31:08] "[33mPOST /audits HTTP/1.1[0m" 404 -
+2024-06-01 18:31:14,230 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:31:14] "[33mGET /audits HTTP/1.1[0m" 404 -
+2024-06-01 18:31:20,727 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:31:20] "[33mGET /audits HTTP/1.1[0m" 404 -
+2024-06-01 18:32:04,635 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\__init__.py', reloading
+2024-06-01 18:32:04,760 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:32:05,465 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:32:05,467 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:32:13,516 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\__init__.py', reloading
+2024-06-01 18:32:13,639 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:32:14,423 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:32:14,424 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:32:15,754 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:32:15] "GET /audits HTTP/1.1" 200 -
+2024-06-01 18:32:17,842 - INFO - werkzeug - 127.0.0.1 - - [01/Jun/2024 18:32:17] "GET /audits HTTP/1.1" 200 -
+2024-06-01 18:33:31,760 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\services\\problem_service.py', reloading
+2024-06-01 18:33:31,888 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:33:32,624 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:33:32,626 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:34:14,811 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\services\\problem_service.py', reloading
+2024-06-01 18:34:14,933 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:34:15,613 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:34:15,615 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:35:17,901 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\services\\problem_service.py', reloading
+2024-06-01 18:35:18,022 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:35:18,754 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:35:18,756 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:35:28,815 - INFO - werkzeug -  * Detected change in 'd:\\All projects\\virtusa\\aiops_be\\app\\services\\problem_service.py', reloading
+2024-06-01 18:35:28,942 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:35:45,139 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-01 18:35:45,140 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2024-06-01 18:35:45,142 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:35:45,825 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:35:45,827 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:37:57,376 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\remediation_service.py', reloading
+2024-06-01 18:37:57,502 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:37:58,297 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:37:58,300 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:38:54,553 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\problem_service.py', reloading
+2024-06-01 18:38:54,678 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:38:55,384 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:38:55,387 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:38:57,409 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\problem_service.py', reloading
+2024-06-01 18:38:57,530 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:38:58,361 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:38:58,363 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 18:39:53,612 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\audit_service.py', reloading
+2024-06-01 18:39:53,747 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 18:39:54,459 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 18:39:54,462 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:28:43,009 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 21:28:43,312 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:28:44,817 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:28:44,821 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:29:33,229 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 21:29:33,523 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:29:34,683 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:29:34,687 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:30:55,380 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 21:30:55,635 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:30:56,940 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:30:56,943 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:31:13,071 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 21:31:13,277 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:31:14,339 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:31:14,343 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:32:02,734 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 21:32:02,982 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:32:04,042 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:32:04,046 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:33:54,967 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 21:33:55,291 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:33:56,638 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:33:56,641 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:49:24,781 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\audit_service.py', reloading
+2024-06-01 21:49:25,048 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:49:26,243 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:49:26,247 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:49:29,297 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\audit_service.py', reloading
+2024-06-01 21:49:29,571 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:49:30,877 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:49:30,880 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:50:09,213 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\audit_service.py', reloading
+2024-06-01 21:50:09,480 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:50:10,786 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:50:10,790 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:50:27,958 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\webhook_controller.py', reloading
+2024-06-01 21:50:28,247 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:50:29,314 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:50:29,317 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:50:48,496 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\audit_service.py', reloading
+2024-06-01 21:50:48,772 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:50:49,984 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:50:49,987 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:50:58,073 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\audit_service.py', reloading
+2024-06-01 21:50:58,337 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 21:50:59,742 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 21:50:59,745 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 21:55:19,942 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\remediation_service.py', reloading
+2024-06-01 21:55:20,117 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:01:02,449 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-01 22:01:02,450 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2024-06-01 22:01:02,453 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:01:03,629 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:01:03,633 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 22:01:45,996 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\remediation_controller.py', reloading
+2024-06-01 22:01:46,264 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:01:47,473 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:01:47,476 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 22:02:47,995 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\problem_controller.py', reloading
+2024-06-01 22:02:48,162 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:02:49,294 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:02:49,298 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 22:02:55,372 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\problem_controller.py', reloading
+2024-06-01 22:02:55,642 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:02:56,730 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:02:56,733 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 22:03:14,911 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\problem_controller.py', reloading
+2024-06-01 22:03:15,192 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:03:16,390 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:03:16,394 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 22:05:32,438 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\problem_service.py', reloading
+2024-06-01 22:05:32,711 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:05:33,877 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:05:33,881 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 22:05:35,913 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\services\\problem_service.py', reloading
+2024-06-01 22:05:36,106 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:05:37,300 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:05:37,303 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 22:06:16,634 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\problem_controller.py', reloading
+2024-06-01 22:06:16,819 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:06:18,383 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:06:18,388 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-01 22:10:18,492 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\app\\controllers\\problem_controller.py', reloading
+2024-06-01 22:10:18,629 - INFO - werkzeug -  * Restarting with stat
+2024-06-01 22:10:19,445 - WARNING - werkzeug -  * Debugger is active!
+2024-06-01 22:10:19,448 - INFO - werkzeug -  * Debugger PIN: 419-063-655
+2024-06-02 06:43:27,616 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-02 06:43:27,616 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2024-06-02 06:43:27,618 - INFO - werkzeug -  * Restarting with stat
+2024-06-02 06:43:28,394 - WARNING - werkzeug -  * Debugger is active!
+2024-06-02 06:43:28,396 - INFO - werkzeug -  * Debugger PIN: 213-037-692
+2024-06-02 07:04:29,650 - INFO - werkzeug -  * Detected change in 'D:\\All projects\\virtusa\\aiops_be\\run.py', reloading
+2024-06-02 07:04:29,821 - INFO - werkzeug -  * Restarting with stat
