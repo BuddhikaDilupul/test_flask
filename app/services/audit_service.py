@@ -58,3 +58,40 @@ def update_audit_status(pid, new_status):
         db.session.rollback()
         logger.error(f"Error updating audit status: {str(e)}")
         return {"error": str(e)}
+
+def get_audit_status():
+    try:
+        open_count = Audit.query.filter_by(status="OPEN").count()
+        in_progress_count = Audit.query.filter_by(status="IN_PROGRESS").count()
+
+        latest_audits = Audit.query.order_by(Audit.problemDetectedAt.desc()).limit(5).all()
+
+        audit_list = [
+            {
+                "id": audit.id,
+                "problemTitle": audit.problemTitle,
+                "subProblemTitle": audit.subProblemTitle,
+                "impactedEntity": audit.impactedEntity,
+                "problemImpact": audit.problemImpact,
+                "problemSeverity": audit.problemSeverity,
+                "problemURL": audit.problemURL,
+                "serviceName": audit.serviceName,
+                "actionType": audit.actionType,
+                "status": audit.status,
+                "pid": audit.pid,
+                "executedProblemId": audit.executedProblemId,
+                "displayId": audit.displayId,
+                "comments": audit.comments,
+                "problemDetectedAt": audit.problemDetectedAt,
+                "problemEndAt": audit.problemEndAt
+            } for audit in latest_audits
+        ]
+
+        response = {
+            "count": open_count + in_progress_count,
+            "activity": audit_list
+        }
+
+        return response
+    except Exception as e:
+        raise e
