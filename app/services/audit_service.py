@@ -48,7 +48,7 @@ def update_audit_status(pid, new_status):
         audit = Audit.query.filter_by(pid=pid).first()
         if audit:
             audit.status = new_status
-            audit.problemEndAt = datetime.now().strftime("%H:%M:%S")
+            audit.problemEndAt = datetime.datetime.now()
             db.session.commit()
             logger.info(f"Updated audit status for PID {pid} successfully")
             return {"message": f"Audit with PID {pid} updated successfully"}

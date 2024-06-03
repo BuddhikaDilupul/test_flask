@@ -58,7 +58,7 @@ def webhook():
                     return 'No script specified in DB', 400
             else:
                 # New problem detected and saving
-                create_problem_auto(problemTitle, subProblemTitle, serviceName, "NOT_REOLVED")
+                create_problem_auto(problemTitle, subProblemTitle, serviceName, "NOT_RESOLVED")
                 create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType="MANUAL", status="IN_PROGRESS", comments="Waiting for manual instructions", problemEndAt=None)
                 return "Problem Recorded Sucessfully", 201
         else:
