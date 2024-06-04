@@ -29,7 +29,7 @@ def create_remediation_controller():
         return "Cannot run script", 400
     
     
-@remediation_bp.route('/executed_remediation/<int:problem_id>', methods=['GET'])
+@remediation_bp.route('/problem_remediations/<int:problem_id>', methods=['GET'])
 def get_problem_with_remediation_route(problem_id):
     try:
         problem_with_remediation = get_problem_with_remediation(problem_id)
@@ -37,18 +37,20 @@ def get_problem_with_remediation_route(problem_id):
             return jsonify({"error": "Problem not found"}), 404
 
         problem, remediation = problem_with_remediation
-        result = {
-            "problemId": problem.id,
-            "problemTitle": problem.problemTitle,
-            "subProblemTitle": problem.subProblemTitle,
-            "serviceName": problem.serviceName,
-            "status": problem.status,
-            "remediationId": remediation.id if remediation else None,
-            "recommendationText": remediation.recommendationText if remediation else None,
-            "scriptPath": remediation.scriptPath if remediation else None,
-            "createdAt": remediation.createdAt if remediation else None,
-            "lastUpdateAt": remediation.lastUpdateAt if remediation else None
-        }
+        result = [
+            {
+                "problemId": problem.id,
+                "problemTitle": problem.problemTitle,
+                "subProblemTitle": problem.subProblemTitle,
+                "serviceName": problem.serviceName,
+                "status": problem.status,
+                "remediationId": remediation.id if remediation else None,
+                "recommendationText": remediation.recommendationText if remediation else None,
+                "scriptPath": remediation.scriptPath if remediation else None,
+                "createdAt": remediation.createdAt if remediation else None,
+                "lastUpdateAt": remediation.lastUpdateAt if remediation else None
+            }
+        ]
 
         logger.info(f"Fetched problem with remediation for problemId {problem_id} successfully")
         return jsonify(result), 200

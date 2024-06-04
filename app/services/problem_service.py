@@ -39,16 +39,6 @@ def get_all_problems_with_remediations():
     except SQLAlchemyError as e:
         logger.error(f"Error fetching problems with remediations: {str(e)}")
         return {"error": str(e)}
-
-#getExecuted script data
-def get_problem_with_remediation(problem_id):
-    try:
-        problem_with_remediation = db.session.query(Problem, Remediation).join(Remediation, Problem.id == Remediation.probId).filter(Problem.id == problem_id).first()
-        return problem_with_remediation
-    except SQLAlchemyError as e:
-        logger.error(f"Error fetching problem with remediation for problemId {problem_id}: {str(e)}")
-        return {"error": str(e)}
-    
     
 def update_status_by_id(id):
     try:

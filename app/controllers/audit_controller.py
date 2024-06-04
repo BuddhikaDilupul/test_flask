@@ -6,7 +6,7 @@ import logging
 audit_bp = Blueprint('audit_bp', __name__)
 logger = logging.getLogger(__name__)
 
-@audit_bp.route('/audits', methods=['GET'])
+@audit_bp.route('/get_audit_data', methods=['GET'])
 def get_audits():
     try:
         audits = get_all_audits()

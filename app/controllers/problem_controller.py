@@ -56,15 +56,15 @@ def get_problems_with_remediations():
         return jsonify({"error": "Error fetching problems with remediations"}), 500
 
 #brand new rule 
-@problem_bp.route('/new_problem', methods=['POST'])
+@problem_bp.route('/save_problem', methods=['POST'])
 def create_problem():
     data = request.json
     try:
         problem_title = data['problemTitle']
         sub_problem_title = data['subProblemTitle']
         service_name = data['serviceName']
-        recommendation_text = data['recommendationText']
-        script_path = data['scriptPath']
+        recommendation_text = data['recommendation']
+        script_path = data['resolutionScript']
         status = data['status']
 
         new_problem = create_problem_auto(problem_title, sub_problem_title, service_name, status)
@@ -72,7 +72,7 @@ def create_problem():
         print(new_problem.id)
         new_remediation = create_remediation(recommendation_text, script_path, new_problem.id)
         logger.info(f"Created Recommendation with ID {new_remediation.id} successfully")
-        return jsonify({"id": new_problem.id}), 201
+        return "New Rule Created Successfully", 201
     except Exception as e:
         logger.error(f"Error creating problem: {str(e)}")
         return jsonify({"error": "Error creating problem"}), 500
