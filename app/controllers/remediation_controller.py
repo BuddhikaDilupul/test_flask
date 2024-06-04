@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.services.remediation_service import create_remediation
+from app.services.remediation_service import create_remediation, get_problem_with_remediation
 from app.services.problem_service import update_status_by_id
 from app.util.execute_script import execute_script
 import logging
@@ -27,3 +27,31 @@ def create_remediation_controller():
         return jsonify({"id": result.id}), 201
     else:
         return "Cannot run script", 400
+    
+    
+@remediation_bp.route('/executed_remediation/<int:problem_id>', methods=['GET'])
+def get_problem_with_remediation_route(problem_id):
+    try:
+        problem_with_remediation = get_problem_with_remediation(problem_id)
+        if not problem_with_remediation:
+            return jsonify({"error": "Problem not found"}), 404
+
+        problem, remediation = problem_with_remediation
+        result = {
+            "problemId": problem.id,
+            "problemTitle": problem.problemTitle,
+            "subProblemTitle": problem.subProblemTitle,
+            "serviceName": problem.serviceName,
+            "status": problem.status,
+            "remediationId": remediation.id if remediation else None,
+            "recommendationText": remediation.recommendationText if remediation else None,
+            "scriptPath": remediation.scriptPath if remediation else None,
+            "createdAt": remediation.createdAt if remediation else None,
+            "lastUpdateAt": remediation.lastUpdateAt if remediation else None
+        }
+
+        logger.info(f"Fetched problem with remediation for problemId {problem_id} successfully")
+        return jsonify(result), 200
+    except Exception as e:
+        logger.error(f"Error fetching problem with remediation for problemId {problem_id}: {str(e)}")
+        return jsonify({"error": "Error fetching problem with remediation"}), 500
