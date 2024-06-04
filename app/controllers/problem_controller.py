@@ -9,6 +9,7 @@ problem_bp = Blueprint('problem_bp', __name__)
 # Set up logging
 logger = logging.getLogger(__name__)
 
+#get all problems
 @problem_bp.route('/problems', methods=['GET'])
 def get_problems():
     try:
@@ -28,6 +29,8 @@ def get_problems():
         logger.error(f"Error fetching problems: {str(e)}")
         return jsonify({"error": "Error fetching problems"}), 500
 
+
+#display all available remediations
 @problem_bp.route('/problems_with_remediations', methods=['GET'])
 def get_problems_with_remediations():
     try:
@@ -56,7 +59,8 @@ def get_problems_with_remediations():
         logger.error(f"Error fetching problems with remediations: {str(e)}")
         return jsonify({"error": "Error fetching problems with remediations"}), 500
 
-@problem_bp.route('/new_rule', methods=['POST'])
+#brand new rule 
+@problem_bp.route('/new_problem', methods=['POST'])
 def create_problem():
     data = request.json
     try:
@@ -77,7 +81,7 @@ def create_problem():
         logger.error(f"Error creating problem: {str(e)}")
         return jsonify({"error": "Error creating problem"}), 500
 
-
+#problems wich has not resolution scripts
 @problem_bp.route('/problems/not_resolved', methods=['GET'])
 def get_not_resolved_problems_controller():
     try:
