@@ -13,7 +13,7 @@ class Audit(db.Model):
     status = db.Column(db.String(255), nullable=False)
     pid = db.Column(db.String(255))
     executedProblemId = db.Column(db.String(255))
-    displayId = db.Column(db.String(255))
+    displayId = db.Column(db.String(255),unique=True)
     comments = db.Column(db.String(255))
     problemDetectedAt = db.Column(db.DateTime, nullable=True)
     problemEndAt = db.Column(db.DateTime, nullable=True)
