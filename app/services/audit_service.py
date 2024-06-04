@@ -95,3 +95,28 @@ def get_audit_status():
         return response
     except Exception as e:
         raise e
+    
+    
+def update_in_progress_problems(serviceName, probId):
+  """
+  Updates all "in_progress" records with the specified serviceName to have their executedProblemId set to probId.
+
+  Args:
+      serviceName: The name of the service to update.
+      probId: The new executedProblemId value.
+  """
+  try:
+    # Update the records using SQLAlchemy
+    db.session.query(Audit).filter(
+        Audit.serviceName == serviceName, Audit.status == "IN_PROGRESS"
+    ).update({Audit.executedProblemId: probId})
+
+    # Commit the changes to the database
+    db.session.commit()
+    print(f"Successfully updated executedProblemId for 'in_progress' records with serviceName: {serviceName}")
+
+  except Exception as e:
+    # Rollback the changes in case of errors
+    db.session.rollback()
+    print(f"An error occurred: {e}")
+

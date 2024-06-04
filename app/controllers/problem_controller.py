@@ -78,7 +78,7 @@ def create_problem():
         return jsonify({"error": "Error creating problem"}), 500
 
 #problems wich has not resolution scripts
-@problem_bp.route('/problems/not_resolved', methods=['GET'])
+@problem_bp.route('/get_new_problems', methods=['GET'])
 def get_not_resolved_problems_controller():
     try:
         problems = get_not_resolved_problems()

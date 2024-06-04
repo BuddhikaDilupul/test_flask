@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.services.remediation_service import create_remediation, get_problem_with_remediation
 from app.services.problem_service import update_status_by_id
+from app.services.audit_service import update_in_progress_problems
 from app.util.execute_script import execute_script
 import logging
 
@@ -10,13 +11,13 @@ logger = logging.getLogger(__name__)
 # Create a Blueprint for the remediation routes
 remediation_bp = Blueprint('remediation', __name__)
 
-@remediation_bp.route('/remediation_auto_detected', methods=['POST'])
+@remediation_bp.route('/insert_recommendation', methods=['POST'])
 def create_remediation_controller():
     data = request.json
-    recommendation_text = data.get('recommendationText')
-    script_path = data.get('scriptPath')
+    recommendation_text = data.get('recommendation')
+    script_path = data.get('resolutionScript')
     service_name = data.get('serviceName')
-    problem_id = data.get('probId')
+    problem_id = data.get('problemId')
 
     if not all([recommendation_text, script_path, problem_id, service_name]):
         logger.error("Missing required fields in request data")
@@ -24,7 +25,8 @@ def create_remediation_controller():
     if(execute_script(script_path,service_name)):
         result = create_remediation(recommendation_text, script_path, problem_id)
         update_status_by_id(problem_id)
-        return jsonify({"id": result.id}), 201
+        update_in_progress_problems(service_name, problem_id)
+        return "Remediation Saved Successfully", 201
     else:
         return "Cannot run script", 400
     
