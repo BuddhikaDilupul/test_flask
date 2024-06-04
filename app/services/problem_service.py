@@ -33,7 +33,7 @@ def get_all_problems():
 
 def get_all_problems_with_remediations():
     try:
-        problems_with_remediations = db.session.query(Problem, Remediation).outerjoin(Remediation, Problem.id == Remediation.probId).all()
+        problems_with_remediations = db.session.query(Problem, Remediation).join(Remediation, Problem.id == Remediation.probId).all()
         return problems_with_remediations
     except SQLAlchemyError as e:
         logger.error(f"Error fetching problems with remediations: {str(e)}")

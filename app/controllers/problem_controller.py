@@ -37,20 +37,16 @@ def get_problems_with_remediations():
         problems_with_remediations = get_all_problems_with_remediations()
         result = [
             {
-                "problem": {
-                    "id": problem.id,
+                    "problemId": problem.id,
                     "problemTitle": problem.problemTitle,
                     "subProblemTitle": problem.subProblemTitle,
                     "serviceName": problem.serviceName,
-                    "status": problem.status
-                },
-                "remediation": {
-                    "id": remediation.id,
-                    "recommendationText": remediation.recommendationText,
-                    "scriptPath": remediation.scriptPath,
-                    "createdAt": remediation.createdAt,
-                    "lastUpdateAt": remediation.lastUpdateAt
-                } if remediation else None
+                    "status": problem.status,
+                    "remediationId": remediation.id if remediation else None,
+                    "recommendationText": remediation.recommendationText if remediation else None,
+                    "scriptPath": remediation.scriptPath if remediation else None,
+                    "createdAt": remediation.createdAt if remediation else None,
+                    "lastUpdateAt": remediation.lastUpdateAt if remediation else None
             } for problem, remediation in problems_with_remediations
         ]
         logger.info("Fetched all problems with remediations successfully")
