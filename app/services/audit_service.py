@@ -140,3 +140,15 @@ def update_in_progress_problems(serviceName, probId):
     db.session.rollback()
     print(f"An error occurred: {e}")
 
+
+def get_audit_record_by_id(id):
+    try:
+        audit = Audit.query.get(id)
+        if(audit):
+            return audit;
+        else:
+            None
+    except Exception as e:
+        # Rollback the changes in case of errors
+        db.session.rollback()
+        print(f"An error occurred: {e}")

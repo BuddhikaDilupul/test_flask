@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 import datetime
 from app.services.remediation_service import create_remediation, get_problem_with_remediation
 from app.services.problem_service import update_status_by_id
-from app.services.audit_service import update_in_progress_problems
+from app.services.audit_service import update_in_progress_problems,get_audit_record_by_id
 from app.util.execute_script import execute_script
 
 import logging
@@ -33,13 +33,13 @@ def create_remediation_controller():
         return "Cannot run script", 400
     
     
-@remediation_bp.route('/problem_recommendations/<int:problem_id>', methods=['GET'])
-def get_problem_with_remediation_route(problem_id):
+@remediation_bp.route('/problem_recommendations/<int:problem_id>/<int:audit_id>', methods=['GET'])
+def get_problem_with_remediation_route(problem_id,audit_id):
     try:
         problem_with_remediation = get_problem_with_remediation(problem_id)
         if not problem_with_remediation:
             return jsonify({"error": "Problem not found"}), 404
-
+        audit=get_audit_record_by_id(audit_id)
         problem, remediation = problem_with_remediation
         result = [
             {
@@ -52,7 +52,10 @@ def get_problem_with_remediation_route(problem_id):
                 "recommendationText": remediation.recommendationText if remediation else None,
                 "scriptPath": remediation.scriptPath if remediation else None,
                 "createdAt": remediation.createdAt if remediation else None,
-                "lastUpdateAt": remediation.lastUpdateAt if remediation else None
+                "lastUpdateAt": remediation.lastUpdateAt if remediation else None,
+                "scriptExecutionStartAt": audit.scriptExecutionStartAt if audit else None,
+                "actionType": audit.actionType if audit else None,
+                "comments" :audit.comments if audit else None
             }
         ]
 
