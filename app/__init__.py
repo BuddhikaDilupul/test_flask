@@ -21,11 +21,13 @@ def create_app():
     from app.controllers.problem_controller import problem_bp
     from app.controllers.audit_controller import audit_bp
     from app.controllers.remediation_controller import remediation_bp
+    from app.controllers.remediation_problem_controller import remediation_problem_bp
     
     app.register_blueprint(webhook_bp)
     app.register_blueprint(problem_bp)
     app.register_blueprint(remediation_bp)
     app.register_blueprint(audit_bp)
+    app.register_blueprint(remediation_problem_bp)
 
     with app.app_context():
         db.create_all()

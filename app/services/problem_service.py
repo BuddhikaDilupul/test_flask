@@ -74,3 +74,16 @@ def get_not_resolved_problems():
     except Exception as e:
         # You can add logging here if needed
         return {"error": str(e)}
+
+
+def problem_update(problemTitle, subProblemTitle, serviceName, problemId):
+    problem = Problem.query.filter_by(pid = problemId).first()
+    if problem:
+        problem.serviceName = serviceName
+        problem.problemTitle =problemTitle
+        problem.subProblemTitle=subProblemTitle
+        db.session.commit()
+        logger.info(f"Updated problem for Problem {problemId} successfully")
+        return "Problem updated successfully"
+    else:
+        return "Problem not found"
