@@ -51,7 +51,7 @@ def webhook():
                             return 'Script execution success', 200
                         else:
                             # If same error contiue it will come to this line because PID is uniue and will throw exception
-                            update_audit_status_closed(pid, "CLOSED",problemEndAt=datetime.now(), scriptExecutionStartAt=scriptExecutionStartAt)
+                            update_audit_status_closed(pid, "CLOSED", scriptExecutionStartAt=scriptExecutionStartAt)
                             return 'Script execution success', 200
                     else:
                         return 'Script execution unsuccessful!', 400
@@ -70,7 +70,7 @@ def webhook():
     elif state == "RESOLVED":
         # update_audit_status(pid, "CLOSED")
         logger.info("Dynatrace Resolved notification received. Service up and running")
-        update_audit_status_closed(pid, "CLOSED",problemEndAt=datetime.now(), scriptExecutionStartAt=datetime.now(),)
+        update_audit_status_closed(pid, "CLOSED", scriptExecutionStartAt=datetime.now(),)
         return 'Dynatrace Resolved Confirmation', 200
 
     else:
