@@ -55,7 +55,7 @@ def get_problem_with_remediation_route(problem_id,pid):
                 "lastUpdateAt": remediation.lastUpdateAt if remediation else None,
                 "scriptExecutionStartAt": audit.scriptExecutionStartAt if audit else None,
                 "actionType": audit.actionType if audit else None,
-                "comments" :audit.comments if audit else None
+                "problemEndAt" :audit.problemEndAt if audit else None
             }
         ]
 
