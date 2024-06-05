@@ -49,7 +49,7 @@ def update_audit_status_closed(pid, new_status,scriptExecutionStartAt):
         audit = Audit.query.filter_by(pid=pid).first()
         if audit:
             audit.status = new_status
-            audit.problemEndAt=datetime.now(),
+            audit.problemEndAt=datetime.datetime.now(),
             audit.scriptExecutionStartAt=scriptExecutionStartAt
             db.session.commit()
             logger.info(f"Updated audit status for PID {pid} successfully")
