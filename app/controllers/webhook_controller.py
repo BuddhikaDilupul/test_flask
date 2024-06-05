@@ -50,7 +50,7 @@ def webhook():
                     scriptExecutionStartAt = datetime.now(timezone("Asia/Kolkata")).strftime('%Y-%m-%d %H:%M:%S')
                     if execute_script(script_path, serviceName):
                         # Add execution data to the audit table
-                        if create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType="AUTOMATIC", status="CLOSED", comments="Successfully Executed", problemEndAt=datetime.now(), scriptExecutionStartAt=scriptExecutionStartAt):
+                        if create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType="AUTOMATIC", status="CLOSED", comments="Successfully Executed", problemEndAt=datetime.now(ist_timezone).strftime('%Y-%m-%d %H:%M:%S'), scriptExecutionStartAt=scriptExecutionStartAt):
                             return 'Script execution success', 200
                         else:
                             # If same error contiue it will come to this line because PID is uniue and will throw exception
