@@ -33,13 +33,13 @@ def create_remediation_controller():
         return "Cannot run script", 400
     
     
-@remediation_bp.route('/problem_recommendations/<int:problem_id>/<int:audit_id>', methods=['GET'])
-def get_problem_with_remediation_route(problem_id,audit_id):
+@remediation_bp.route('/problem_recommendations/<int:problem_id>/<int:pid>', methods=['GET'])
+def get_problem_with_remediation_route(problem_id,pid):
     try:
         problem_with_remediation = get_problem_with_remediation(problem_id)
         if not problem_with_remediation:
             return jsonify({"error": "Problem not found"}), 404
-        audit=get_audit_record_by_id(audit_id)
+        audit=get_audit_record_by_id(pid)
         problem, remediation = problem_with_remediation
         result = [
             {

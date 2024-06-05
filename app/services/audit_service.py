@@ -141,9 +141,9 @@ def update_in_progress_problems(serviceName, probId):
     print(f"An error occurred: {e}")
 
 
-def get_audit_record_by_id(id):
+def get_audit_record_by_id(pid):
     try:
-        audit = Audit.query.get(id)
+        audit = Audit.query.filter_by(pid=pid).first()
         if(audit):
             return audit;
         else:
