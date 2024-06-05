@@ -41,22 +41,24 @@ def get_problem_with_remediation_route(remediation_id):
     data = request.json
     
     try:
-        problem, remediation  = get_problem_with_remediation_by_id(remediation_id)
-        print(problem)
-        result = [
-            {
-                "problemId": problem.id,
-                "problemTitle": problem.problemTitle,
-                "subProblemTitle": problem.subProblemTitle,
-                "serviceName": problem.serviceName,
-                "status": problem.status,
-                "remediationId": remediation.id if remediation else None,
-                "recommendationText": remediation.recommendationText if remediation else None,
-                "scriptPath": remediation.scriptPath if remediation else None,
-                "createdAt": remediation.createdAt if remediation else None,
-                "lastUpdateAt": remediation.lastUpdateAt if remediation else None,
-            }
-        ]
+        problem, remediation = get_problem_with_remediation_by_id(remediation_id)
+        if problem is None:
+            return jsonify({"error": "Problem not found"}), 404
+        if remediation is None:
+            return jsonify({"error": "Remediation not found"}), 404
+
+        result = {
+            "problemId": problem.id,
+            "problemTitle": problem.problemTitle,
+            "subProblemTitle": problem.subProblemTitle,
+            "serviceName": problem.serviceName,
+            "status": problem.status,
+            "remediationId": remediation.id,
+            "recommendationText": remediation.recommendationText,
+            "scriptPath": remediation.scriptPath,
+            "createdAt": remediation.createdAt,
+            "lastUpdateAt": remediation.lastUpdateAt,
+        }
         logger.info(f"Fetched remediation for remediation_id {remediation_id} successfully")
         return jsonify(result), 200
     except Exception as e:
