@@ -38,8 +38,6 @@ def update_problem_with_remediation_route(problem_id,remediation_id):
     
 @remediation_problem_bp.route('/get_remediation/<int:remediation_id>', methods=['GET'])
 def get_problem_with_remediation_route(remediation_id):
-    data = request.json
-    
     try:
         problem, remediation = get_problem_with_remediation_by_id(remediation_id)
         if problem is None:
