@@ -24,6 +24,7 @@ def get_audits():
                 "status": audit.status,
                 "pid": audit.pid,
                 "executedProblemId": audit.executedProblemId,
+                "scriptExecutionStartAt": audit.scriptExecutionStartAt,
                 "displayId": audit.displayId,
                 "comments": audit.comments,
                 "problemDetectedAt": audit.problemDetectedAt,
