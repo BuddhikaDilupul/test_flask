@@ -12,7 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Create a Blueprint for the remediation routes
-remediation_problem_bp = Blueprint('remediation_problem', __name__)
+remediation_problem_bp = Blueprint('remediation_problem_bp', __name__)
   
     
 @remediation_problem_bp.route('/edit_remediation/<int:problem_id>/<string:remediation_id>', methods=['POST'])
