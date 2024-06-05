@@ -51,7 +51,6 @@ def remediation_update(remediationId,scriptPath, recommendationText):
         problem.recommendationText =recommendationText
         db.session.commit()
         logger.info(f"Updated Remediation for Problem {remediationId} successfully")
-        print("Hi")
         return "Problem Remediation successfully"
     else:
         return "Remediation not found"

@@ -77,7 +77,7 @@ def get_not_resolved_problems():
 
 
 def problem_update(problemTitle, subProblemTitle, serviceName, problemId):
-    problem = Problem.query.filter_by(pid = problemId).first()
+    problem = Problem.query.filter_by(id = problemId).first()
     if problem:
         problem.serviceName = serviceName
         problem.problemTitle =problemTitle
