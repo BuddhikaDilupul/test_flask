@@ -33,7 +33,7 @@ def create_remediation_controller():
         return "Cannot run script", 400
     
     
-@remediation_bp.route('/problem_recommendations/<int:problem_id>/<int:pid>', methods=['GET'])
+@remediation_bp.route('/problem_recommendations/<int:problem_id>/<string:pid>', methods=['GET'])
 def get_problem_with_remediation_route(problem_id,pid):
     try:
         problem_with_remediation = get_problem_with_remediation(problem_id)
