@@ -22,7 +22,7 @@ def update_problem_with_remediation_route(problem_id,remediation_id):
     try:
         scriptPath = data["resolutionScript"]
         subProblemTitle =  data["subProblemTitle"]
-        recommendationText = data["recommendationText"]
+        recommendationText = data["recommendation"]
         problemTitle = data["problemTitle"]
         subProblemTitle = data["subProblemTitle"]
         serviceName = data["serviceName"]
