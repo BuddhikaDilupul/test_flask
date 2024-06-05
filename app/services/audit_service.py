@@ -7,7 +7,7 @@ from sqlalchemy.exc import SQLAlchemyError
 # Logger setup
 logger = logging.getLogger(__name__)
 
-def create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType, status, comments, problemEndAt):
+def create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType, status, comments, problemEndAt,scriptExecutionStartAt):
     try:
         new_audit = Audit(
             problemTitle=problemTitle,
@@ -24,7 +24,8 @@ def create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, p
             displayId=displayId,
             comments=comments,
             problemDetectedAt=problemDetectedAt,
-            problemEndAt=datetime.datetime.now()
+            problemEndAt=problemEndAt,
+            scriptExecutionStartAt=scriptExecutionStartAt
         )
         db.session.add(new_audit)
         db.session.commit()
@@ -43,12 +44,29 @@ def get_all_audits():
         logger.error(f"Error fetching all audits: {str(e)}")
         return {"error": str(e)}
 
-def update_audit_status(pid, new_status):
+def update_audit_status_closed(pid, new_status,scriptExecutionStartAt):
     try:
         audit = Audit.query.filter_by(pid=pid).first()
         if audit:
             audit.status = new_status
-            audit.problemEndAt = datetime.datetime.now()
+            audit.problemEndAt=datetime.now(),
+            audit.scriptExecutionStartAt=scriptExecutionStartAt
+            db.session.commit()
+            logger.info(f"Updated audit status for PID {pid} successfully")
+            return {"message": f"Audit with PID {pid} updated successfully"}
+        else:
+            return {"error": f"Audit with PID {pid} not found"}, 404
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        logger.error(f"Error updating audit status: {str(e)}")
+        return {"error": str(e)}
+
+def update_audit_status_to_failed(pid):
+    try:
+        audit = Audit.query.filter_by(pid=pid).first()
+        if audit:
+            audit.status = "FAILED"
+            audit.problemEndAt = None
             db.session.commit()
             logger.info(f"Updated audit status for PID {pid} successfully")
             return {"message": f"Audit with PID {pid} updated successfully"}

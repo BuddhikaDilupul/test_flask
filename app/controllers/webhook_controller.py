@@ -4,7 +4,7 @@ from flask import Blueprint, jsonify, request
 import logging
 from app.services.problem_service import create_problem_auto, find_problem_id
 from app.services.remediation_service import get_script_path_by_prob_id
-from app.services.audit_service import create_audit, update_audit_status
+from app.services.audit_service import create_audit, update_audit_status_closed,update_audit_status_to_failed
 from app.util.execute_script import execute_script
 from app.util.dateConvertor import convert_timestamp_to_datetime
 
@@ -44,12 +44,14 @@ def webhook():
                 script_path =  get_script_path_by_prob_id(prob_id)
                 if script_path:
                     # Run the script
+                    scriptExecutionStartAt = datetime.now()
                     if execute_script(script_path, serviceName):
                         # Add execution data to the audit table
-                        if create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType="AUTOMATIC", status="IN_PROGRESS", comments="Successfully Executed", problemEndAt=None):
+                        if create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType="AUTOMATIC", status="CLOSED", comments="Successfully Executed", problemEndAt=datetime.now(), scriptExecutionStartAt=scriptExecutionStartAt):
                             return 'Script execution success', 200
                         else:
-                            update_audit_status(pid, "IN_PROGRESS")
+                            # If same error contiue it will come to this line because PID is uniue and will throw exception
+                            update_audit_status_closed(pid, "CLOSED",problemEndAt=datetime.now(), scriptExecutionStartAt=scriptExecutionStartAt)
                             return 'Script execution success', 200
                     else:
                         return 'Script execution unsuccessful!', 400
@@ -59,18 +61,18 @@ def webhook():
             else:
                 # New problem detected and saving
                 create_problem_auto(problemTitle, subProblemTitle, serviceName, "NOT_RESOLVED")
-                create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType="MANUAL", status="IN_PROGRESS", comments="Waiting for manual instructions", problemEndAt=None)
+                create_audit(problemTitle, subProblemTitle, impactedEntity, problemImpact, problemSeverity, problemURL, problemDetectedAt, serviceName, pid, executedProblemId, displayId, actionType="MANUAL", status="IN_PROGRESS", comments="Waiting for manual instructions", problemEndAt=None, scriptExecutionStartAt=None)
                 return "Problem Recorded Sucessfully", 201
         else:
             logger.warning("No service found in webhook message")
             return 'No service specified in webhook payload.', 400
 
     elif state == "RESOLVED":
-        update_audit_status(pid, "CLOSED")
+        # update_audit_status(pid, "CLOSED")
         logger.info("Dynatrace Resolved notification received. Service up and running")
         return 'Dynatrace Resolved Confirmation', 200
 
     else:
         logger.info("Dynatrace unknown notification received.")
-        update_audit_status(pid, "FAILED")
+        update_audit_status_to_failed(pid)
         return 'Dynatrace message', 200
