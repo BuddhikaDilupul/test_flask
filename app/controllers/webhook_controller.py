@@ -70,6 +70,7 @@ def webhook():
     elif state == "RESOLVED":
         # update_audit_status(pid, "CLOSED")
         logger.info("Dynatrace Resolved notification received. Service up and running")
+        update_audit_status_closed(pid, "CLOSED",problemEndAt=datetime.now(), scriptExecutionStartAt=scriptExecutionStartAt)
         return 'Dynatrace Resolved Confirmation', 200
 
     else:
