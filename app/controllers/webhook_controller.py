@@ -1,7 +1,7 @@
 # app/controllers/webhook_controller.py
 from datetime import datetime, timezone
 from flask import Blueprint, jsonify, request
-from pytz import timezone
+from pytz import timezone,utc
 import logging
 from app.services.problem_service import create_problem_auto, find_problem_id
 from app.services.remediation_service import get_script_path_by_prob_id
@@ -18,6 +18,7 @@ webhook_bp = Blueprint('webhook_bp', __name__)
 def webhook():
     # Get the JSON data from the request
     data = request.json
+    ist_timezone = timezone('Asia/Kolkata')
     
     # Extract relevant data from the payload
     pid = data.get("PID")
@@ -28,11 +29,12 @@ def webhook():
     problemImpact = data.get("ProblemImpact", "Unknown")
     problemSeverity = data.get("ProblemSeverity", "Unknown")
     problemURL = data.get("ProblemURL", "No_URL")
-    problemDetectedAt = datetime.fromtimestamp(data["ProblemDetailsJSON"]["startTime"] / 1000, timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = data["ProblemDetailsJSON"]["startTime"] / 1000
+    datetime_utc = datetime.fromtimestamp(timestamp, utc)
+    problemDetectedAt =  datetime_utc.astimezone(ist_timezone).strftime('%Y-%m-%d %H:%M:%S')
     serviceName = data.get("ServiceName")
     state = data.get("State", "unknown")
 
-    ist_timezone = timezone('Asia/Kolkata')
 
     if state == "OPEN":
         if "ServiceName" in data and "ProblemID" in data:
