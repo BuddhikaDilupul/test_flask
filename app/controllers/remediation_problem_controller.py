@@ -20,7 +20,7 @@ def update_problem_with_remediation_route(problem_id,remediation_id):
     data = request.json
     
     try:
-        scriptPath = data["scriptPath"]
+        scriptPath = data["resolutionScript"]
         subProblemTitle =  data["subProblemTitle"]
         recommendationText = data["recommendationText"]
         problemTitle = data["problemTitle"]
