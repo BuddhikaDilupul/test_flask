@@ -48,7 +48,7 @@ def get_all_audits():
 def update_audit_status_closed(pid, new_status,scriptExecutionStartAt):
     try:
         ist_timezone = timezone('Asia/Kolkata')
-        audit = Audit.query.filter_by(pid=pid).first()
+        audit = Audit.query.filter_by(pid=pid, status="MANUAL").first()
         if audit:
             audit.status = new_status
             audit.problemEndAt=datetime.datetime.now(ist_timezone).strftime('%Y-%m-%d %H:%M:%S'),
