@@ -63,7 +63,7 @@ def get_problem_with_remediation_route(remediation_id):
         logger.error(f"Error fetching problem with remediation for problemId {remediation_id}: {str(e)}")
         return jsonify({"error": "Error fetching problem with remediation"}), 500
     
-@remediation_problem_bp.route('/delete_remediation/<int:remediation_id>/<int:problem_id>', methods=['DEKETE'])    
+@remediation_problem_bp.route('/delete_remediation/<int:remediation_id>/<int:problem_id>', methods=['DELETE'])    
 def delete_problem_remediation_controller(remediation_id, problem_id):
     result_remediation = delete_remediation(remediation_id)
     result_problem = delete_problem(problem_id)
