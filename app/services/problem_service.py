@@ -87,3 +87,25 @@ def problem_update(problemTitle, subProblemTitle, serviceName, problemId):
         return "Problem updated successfully"
     else:
         return "Problem not found"
+    
+    
+def delete_problem(problem_id):
+    try:
+        # Fetch the problem record by its ID
+        problem = Problem.query.get(problem_id)
+        
+        # If the record does not exist, raise an exception
+        if problem is None:
+            raise ValueError(f"Problem with ID {problem_id} does not exist.")
+
+        # Delete the record from the database
+        db.session.delete(problem)
+        db.session.commit()
+        
+        return {"status": "success", "message": f"Problem with ID {problem_id} deleted successfully."}
+    
+    except Exception as e:
+        # Rollback the session in case of an error
+        db.session.rollback()
+        
+        return {"status": "error", "message": str(e)}

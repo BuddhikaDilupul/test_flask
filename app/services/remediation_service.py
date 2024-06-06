@@ -55,6 +55,26 @@ def remediation_update(remediationId,scriptPath, recommendationText):
     else:
         return "Remediation not found"
 
+def delete_remediation(remediation_id):
+    try:
+        # Fetch the remediation record by its ID
+        remediation = Remediation.query.get(remediation_id)
+        
+        # If the record does not exist, raise an exception
+        if remediation is None:
+            raise ValueError(f"Remediation with ID {remediation_id} does not exist.")
+
+        # Delete the record from the database
+        db.session.delete(remediation)
+        db.session.commit()
+        
+        return {"status": "success", "message": f"Remediation with ID {remediation_id} deleted successfully."}
+    
+    except Exception as e:
+        # Rollback the session in case of an error
+        db.session.rollback()
+        
+        return {"status": "error", "message": str(e)}
 
 #not used
 
