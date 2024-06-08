@@ -4,7 +4,7 @@ from app import db
 class Audit(db.Model):
     id = Column(Integer, autoincrement=True)
     problemTitle = Column(String(255), nullable=False)
-    subProblemTitle = Column(String(255), default="No_Sub_Problem_Detected")
+    subProblemTitle = Column(String(255), default="N/A")
     impactedEntity = Column(String(255))
     problemImpact = Column(String(255))
     problemSeverity = Column(String(255))

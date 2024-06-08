@@ -24,7 +24,7 @@ def webhook():
     pid = data.get("PID")
     displayId = data.get("ProblemID")
     problemTitle = data.get("ProblemTitle")
-    subProblemTitle = data.get("SubProblemTitle", "No_Sub_Problem_Detected")
+    subProblemTitle = data.get("SubProblemTitle", "N/A")
     impactedEntity = data.get("ImpactedEntity", "Unknown")
     problemImpact = data.get("ProblemImpact", "Unknown")
     problemSeverity = data.get("ProblemSeverity", "Unknown")
