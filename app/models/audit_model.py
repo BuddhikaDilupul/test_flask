@@ -1,20 +1,25 @@
+from sqlalchemy import Column, DateTime, Integer, PrimaryKeyConstraint, String
 from app import db
 
 class Audit(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    problemTitle = db.Column(db.String(255), nullable=False)
-    subProblemTitle = db.Column(db.String(255), default="No_Sub_Problem_Detected")
-    impactedEntity = db.Column(db.String(255))
-    problemImpact = db.Column(db.String(255))
-    problemSeverity = db.Column(db.String(255))
-    problemURL = db.Column(db.String(255))
-    serviceName = db.Column(db.String(255), nullable=False)
-    actionType = db.Column(db.String(255))
-    status = db.Column(db.String(255), nullable=False)
-    pid = db.Column(db.String(255))
-    executedProblemId = db.Column(db.String(255))
-    scriptExecutionStartAt = db.Column(db.DateTime, nullable=True)
-    displayId = db.Column(db.String(255),unique=True)
-    comments = db.Column(db.String(255))
-    problemDetectedAt = db.Column(db.DateTime, nullable=True)
-    problemEndAt = db.Column(db.DateTime, nullable=True)
+    id = Column(Integer, nullable=False)
+    problemTitle = Column(String(255), nullable=False)
+    subProblemTitle = Column(String(255), default="No_Sub_Problem_Detected")
+    impactedEntity = Column(String(255))
+    problemImpact = Column(String(255))
+    problemSeverity = Column(String(255))
+    problemURL = Column(String(255))
+    serviceName = Column(String(255), nullable=False)
+    actionType = Column(String(255))
+    status = Column(String(255), nullable=False)
+    pid = Column(String(255))
+    executedProblemId = Column(String(255))
+    scriptExecutionStartAt = Column(DateTime, nullable=True)
+    displayId = Column(String(255))
+    comments = Column(String(255))
+    problemDetectedAt = Column(DateTime, nullable=True)
+    problemEndAt = Column(DateTime, nullable=True)
+
+    __table_args__ = (
+        PrimaryKeyConstraint('id', 'serviceName', 'displayId', name='pk_id_serviceName_displayId'),
+    )

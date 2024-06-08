@@ -117,28 +117,33 @@ def get_audit_status():
         raise e
     
     
-def update_in_progress_problems(serviceName, probId):
-  """
-  Updates all "in_progress" records with the specified serviceName to have their executedProblemId set to probId.
+def update_in_progress_problems_in_Audit(serviceName, displayId, probId, problemTitle):
+    """
+    Updates all "IN_PROGRESS" records with the specified serviceName and displayId
+    to have their executedProblemId set to probId.
 
-  Args:
-      serviceName: The name of the service to update.
-      probId: The new executedProblemId value.
-  """
-  try:
-    # Update the records using SQLAlchemy
-    db.session.query(Audit).filter(
-        Audit.serviceName == serviceName, Audit.status == "IN_PROGRESS"
-    ).update({Audit.executedProblemId: probId})
+    Args:
+        serviceName: The name of the service to update.
+        displayId: The display ID associated with the records to update.
+        probId: The new executedProblemId value.
+    """
+    try:
+        # Update the records using SQLAlchemy
+        db.session.query(Audit).filter(
+            Audit.serviceName == serviceName,
+            Audit.displayId == displayId,
+            Audit.status == "IN_PROGRESS",
+            Audit.problemTitle == problemTitle
+        ).update({Audit.executedProblemId: probId, Audit.status : "CLOSED"})
 
-    # Commit the changes to the database
-    db.session.commit()
-    print(f"Successfully updated executedProblemId for 'in_progress' records with serviceName: {serviceName}")
+        # Commit the changes to the database
+        db.session.commit()
+        print(f"Successfully updated executedProblemId for 'CLOSED' records with serviceName: {serviceName} and displayId: {displayId}")
 
-  except Exception as e:
-    # Rollback the changes in case of errors
-    db.session.rollback()
-    print(f"An error occurred: {e}")
+    except Exception as e:
+        # Rollback the changes in case of errors
+        db.session.rollback()
+        print(f"An error occurred: {e}")
 
 
 def get_audit_record_by_id(pid):

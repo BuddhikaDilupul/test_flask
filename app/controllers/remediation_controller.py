@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 import datetime
 from app.services.remediation_service import create_remediation, get_problem_with_remediation
 from app.services.problem_service import update_status_by_id
-from app.services.audit_service import update_in_progress_problems,get_audit_record_by_id
+from app.services.audit_service import update_in_progress_problems_in_Audit,get_audit_record_by_id
 from app.util.execute_script import execute_script
 
 import logging
@@ -20,14 +20,15 @@ def create_remediation_controller():
     script_path = data.get('resolutionScript')
     service_name = data.get('serviceName')
     problem_id = data.get('problemId')
+    problem_title = data.get('problemTitle')
 
-    if not all([recommendation_text, script_path, problem_id, service_name]):
+    if not all([recommendation_text, script_path, problem_id, service_name, problem_title]):
         logger.error("Missing required fields in request data")
         return jsonify({"error": "Missing required fields"}), 400
     if(execute_script(script_path,service_name)):
         result = create_remediation(recommendation_text, script_path, problem_id)
         update_status_by_id(problem_id)
-        update_in_progress_problems(service_name, problem_id)
+        update_in_progress_problems_in_Audit(service_name, problem_id, problem_title)
         return "Remediation Saved Successfully", 201
     else:
         return "Cannot run script", 400
