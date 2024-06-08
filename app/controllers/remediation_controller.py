@@ -28,7 +28,7 @@ def create_remediation_controller():
     if(execute_script(script_path,service_name)):
         result = create_remediation(recommendation_text, script_path, problem_id)
         update_status_by_id(problem_id)
-        update_in_progress_problems_in_Audit(service_name, problem_id, problem_title)
+        # update_in_progress_problems_in_Audit(service_name, problem_id, problem_title)
         return "Remediation Saved Successfully", 201
     else:
         return "Cannot run script", 400
