@@ -21,7 +21,7 @@ def create_remediation_controller():
     service_name = data.get('serviceName')
     problem_id = data.get('problemId')
     problem_title = data.get('problemTitle')
-
+    print(data,">>>>>>")
     if not all([recommendation_text, script_path, problem_id, service_name, problem_title]):
         logger.error("Missing required fields in request data")
         return jsonify({"error": "Missing required fields"}), 400
