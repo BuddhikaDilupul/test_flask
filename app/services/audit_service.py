@@ -164,7 +164,7 @@ def update_in_progress_records_in_Audit_manual_exe(serviceName, probId, problemT
             Audit.status == "IN_PROGRESS",
             Audit.problemTitle == problemTitle,
             Audit.executedProblemId == probId,
-        ).update({Audit.executedProblemId: probId, Audit.status : "CLOSED", Audit.problemEndA:datetime.datetime.now(ist_timezone).strftime('%Y-%m-%d %H:%M:%S')})
+        ).update({Audit.executedProblemId: probId, Audit.status : "CLOSED", Audit.problemEndAt:datetime.datetime.now(ist_timezone).strftime('%Y-%m-%d %H:%M:%S')})
 
         # Commit the changes to the database
         db.session.commit()
