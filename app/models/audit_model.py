@@ -2,7 +2,7 @@ from sqlalchemy import Column, DateTime, Integer, PrimaryKeyConstraint, String
 from app import db
 
 class Audit(db.Model):
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, autoincrement=True)
     problemTitle = Column(String(255), nullable=False)
     subProblemTitle = Column(String(255), default="No_Sub_Problem_Detected")
     impactedEntity = Column(String(255))
