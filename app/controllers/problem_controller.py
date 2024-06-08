@@ -89,7 +89,6 @@ def get_not_resolved_problems_controller():
                 "subProblemTitle": problem.subProblemTitle,
                 "serviceName": problem.serviceName,
                 "status": problem.status,
-                "displayId":problem.displayId
             } for problem in problems
         ]
         logger.info("Fetched all not resolved problems successfully")
