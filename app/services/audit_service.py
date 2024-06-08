@@ -4,6 +4,7 @@ from app.models.audit_model import Audit
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 from pytz import timezone
+from datetime import datetime, tz
 
 # Logger setup
 logger = logging.getLogger(__name__)
@@ -139,6 +140,35 @@ def update_in_progress_problems_in_Audit(serviceName, displayId, probId, problem
         # Commit the changes to the database
         db.session.commit()
         print(f"Successfully updated executedProblemId for 'CLOSED' records with serviceName: {serviceName} and displayId: {displayId}")
+
+    except Exception as e:
+        # Rollback the changes in case of errors
+        db.session.rollback()
+        print(f"An error occurred: {e}")
+
+        
+def update_in_progress_records_in_Audit_manual_exe(serviceName, probId, problemTitle):
+    """
+    Updates all "IN_PROGRESS" records with the specified serviceName and displayId
+    to have their executedProblemId set to probId.
+
+    Args:
+        serviceName: The name of the service to update.
+        displayId: The display ID associated with the records to update.
+        probId: The new executedProblemId value.
+    """
+    try:
+        # Update the records using SQLAlchemy
+        db.session.query(Audit).filter(
+            Audit.serviceName == serviceName,
+            Audit.status == "IN_PROGRESS",
+            Audit.problemTitle == problemTitle,
+            Audit.executedProblemId == probId,
+        ).update({Audit.executedProblemId: probId, Audit.status : "CLOSED", Audit.problemEndAt:datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')})
+
+        # Commit the changes to the database
+        db.session.commit()
+        print(f"Successfully updated executedProblemId for 'CLOSED' records with serviceName: {serviceName}")
 
     except Exception as e:
         # Rollback the changes in case of errors
