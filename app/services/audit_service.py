@@ -4,7 +4,6 @@ from app.models.audit_model import Audit
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 from pytz import timezone
-from datetime import datetime, tz
 
 # Logger setup
 logger = logging.getLogger(__name__)
@@ -157,6 +156,7 @@ def update_in_progress_records_in_Audit_manual_exe(serviceName, probId, problemT
         displayId: The display ID associated with the records to update.
         probId: The new executedProblemId value.
     """
+    ist_timezone = timezone('Asia/Kolkata')
     try:
         # Update the records using SQLAlchemy
         db.session.query(Audit).filter(
@@ -164,7 +164,7 @@ def update_in_progress_records_in_Audit_manual_exe(serviceName, probId, problemT
             Audit.status == "IN_PROGRESS",
             Audit.problemTitle == problemTitle,
             Audit.executedProblemId == probId,
-        ).update({Audit.executedProblemId: probId, Audit.status : "CLOSED", Audit.problemEndAt:datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')})
+        ).update({Audit.executedProblemId: probId, Audit.status : "CLOSED", Audit.problemEndA:datetime.datetime.now(ist_timezone).strftime('%Y-%m-%d %H:%M:%S')})
 
         # Commit the changes to the database
         db.session.commit()
